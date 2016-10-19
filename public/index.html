@@ -19,6 +19,10 @@
 
       // ->
       // Tutorial 3 - Add Comment component
+      var data = [
+        {id: 1, author: "Jason", text: "Comment by Mr. Jason"},
+        {id: 2, author: "Adam", text: "Comment by Mr. Adam"}
+      ]
       var Comment = React.createClass({
         render: function(){
           return(
@@ -34,10 +38,16 @@
       // Tutorial 2 - Add component CommentList and commentForm
       var CommentList = React.createClass({
         render: function (){
+          var commentNodes = this.props.data.map(function(commentData){
+            return (
+              <Comment author={commentData.author} key={commentData.id}>
+                {commentData.text}
+              </Comment>
+            );
+          });
           return(
-            <div className="commentList">
-             <Comment author="Mr. Jason">Comment by Mr. Jason</Comment>
-             <Comment author="Mr. Adam">Comment by Mr. Adam</Comment>
+            <div className="commentList" data={this.props.data}>
+             {commentNodes}
             </div>
           );
         }
@@ -57,14 +67,14 @@
           return(
             <div className="commentBox">
               <h2>Comments</h2>
-              <CommentList />
+              <CommentList data={this.props.data} />
               <CommentForm />
             </div>
           );
         }
       });
 
-      ReactDOM.render(<CommentBox />, document.getElementById('content'));
+      ReactDOM.render(<CommentBox data={data} />, document.getElementById('content'));
     </script>
   </body>
 </html>
