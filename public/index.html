@@ -18,12 +18,33 @@
       // the script tag loading scripts/example.js and start writing code here.
 
       // ->
+      // Tutorial 2 - Add component CommentList and commentForm
+      var CommentList = React.createClass({
+        render: function (){
+          return(
+            <div className="commentList">
+             This is commentList component
+            </div>
+          );
+        }
+      });
+      var CommentForm = React.createClass({
+        render: function(){
+          return(
+            <div className="commentForm">
+              This is commentForm component
+            </div>
+          );
+        }
+      });
       // Tutorial 1 - Create commentBox component
       var CommentBox = React.createClass({
         render: function() {
           return(
             <div className="commentBox">
-              Hi I am in CommentBox component
+              <h2>Comments</h2>
+              <CommentList />
+              <CommentForm />
             </div>
           );
         }
