@@ -18,8 +18,18 @@
       // the script tag loading scripts/example.js and start writing code here.
 
       // ->
-      // Tutorial 1
-      
+      // Tutorial 1 - Create commentBox component
+      var CommentBox = React.createClass({
+        render: function() {
+          return(
+            <div className="commentBox">
+              Hi I am in CommentBox component
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(<CommentBox />, document.getElementById('content'));
     </script>
   </body>
 </html>
