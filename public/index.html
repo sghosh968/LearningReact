@@ -21,16 +21,21 @@
       // Tutorial 3 - Add Comment component
       var data = [
         {id: 1, author: "Jason", text: "Comment by Mr. Jason"},
-        {id: 2, author: "Adam", text: "Comment by Mr. Adam"}
+        {id: 2, author: "Adam", text: "Comment by *Mr. Adam*"}
       ]
       var Comment = React.createClass({
+        rawMarkup: function() {
+          var md = new Remarkable();
+          var rawMarkup = md.render(this.props.children.toString());
+          return { __html: rawMarkup };
+        },
         render: function(){
           return(
             <div className="comment">
               <div className="commentAuthor">
                 {this.props.author}
               </div>
-              {this.props.children}
+              <span dangerouslySetInnerHTML={this.rawMarkup()} />
             </div>
           );
         }
